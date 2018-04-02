@@ -1,0 +1,219 @@
+
+\usepackage{soul}
+\usepackage{pgfkeys}
+\usepackage{mathstyle}
+\usepackage{transparent}
+
+\makeatletter
+
+% ---------- key=value options ----------
+
+\newif\if@myul@math@usedistance@
+\newif\if@myul@text@usedistance@
+
+\newcommand\@myul@text@depth{\SOUL@uldepth}
+\newcommand\@myul@math@depth{\SOUL@uldepth}
+
+\pgfqkeys{/myul}{
+    % thickness of the rule
+    thickness/.code={\setul{}{#1}},
+    %
+    % distance from baseline where to place the top of the rule
+    depth/.style={%
+        math depth=#1,
+        text depth=#1,
+    },
+    math depth/.code={%
+        \@myul@math@usedistance@false
+        \def\@myul@math@depth{#1}%
+    },
+    text depth/.code={%
+        \@myul@text@usedistance@false
+        \setul{#1}{}%
+    },
+    %
+    % distance from bottom edge of box where to place the top of the rule
+    % works only with command = box
+    distance/.style={%
+        math distance=#1,
+        text distance=#1,
+    },
+    math distance/.code={%
+        \@myul@math@usedistance@true
+        \def\@myul@math@distance{#1}%
+    },
+    text distance/.code={%
+        \@myul@text@usedistance@true
+        \def\@myul@text@distance{#1}%
+    },
+    %
+    % color in which to draw the rule (not the text)
+    color/.code={\setulcolor{#1}},
+    %
+    % which implementation technique to use
+    command/.style={%
+        text command=#1,
+        math command=#1,
+    },
+    %
+    text command/.is choice,
+    text command/soul/.code     ={\let\@myul@text@do=\@myul@soul},
+    text command/box/.code      ={\let\@myul@text@do=\@myul@box},
+    text command/primitive/.code={\let\@myul@text@do=\@myul@primitive},
+    %
+    math command/.is choice,
+    math command/soul/.code     ={\let\@myul@math@do=\@myul@soul},
+    math command/box/.code      ={\let\@myul@math@do=\@myul@box},
+    math command/primitive/.code={\let\@myul@math@do=\@myul@primitive},
+    %
+    % what to do if key is none of the above defined
+    .unknown/.code={%
+        % only process keys for which no full path has been provided
+        % TikZ documentation, page 900
+        \ifpgfkeysaddeddefaultpath
+            \let\@myul@currentname=\pgfkeyscurrentname
+            \pgfkeysalso{%
+                command/\@myul@currentname/.try,
+                color/.lastretry=\@myul@currentname,
+            }%
+        \else
+            \def\pgfutilnext{\pgfkeysvalueof {/handlers/.unknown/.@cmd}#1\pgfeov}%
+            \pgfutilnext
+        \fi
+    },
+}
+
+
+% ---------- user interface ----------
+
+\newcommand{\setmyul}[1]{%
+    \pgfqkeys{/myul}{#1}%
+}
+
+\newcommand<>{\myul}[2][black]{%
+    \begingroup
+        \setmyul{#1}%
+        \ifmmode
+            \expandafter \@myul@math@do
+        \else
+            \expandafter \@myul@text@do
+        \fi
+        #3{#2}%
+    \endgroup
+}
+
+% for auto completion in TeXstudio
+\providecommand{\myul}[1]{}
+
+
+% ---------- using soul package ----------
+% based on soul package
+% supports line break
+% the text to be underlined can *not* be arbitrary TeX code
+% see soul package documentation [November 17, 2003] page 5
+% does *not* work in math mode
+
+\newcommand<>{\@myul@soul}[1]{%
+    %https://tex.stackexchange.com/a/41693/120953
+    \let\set@color=\beamerorig@set@color
+    \let\reset@color=\beamerorig@reset@color
+    \alt#2{%
+        \ul{#1}%
+    }{%
+        \def\SOUL@ulcolor{\texttransparent{0.0}}%
+        \ul{#1}%
+    }%
+}
+
+
+% ---------- using boxes ----------
+% based on:
+% https://tex.stackexchange.com/a/9472/120953
+% https://tex.stackexchange.com/a/1236/120953
+% does *not* support line breaks
+
+\newsavebox\@myul@box@tmpbox
+
+\newcommand<>{\@myul@box}[1]{%
+    \ifmmode
+        \sbox\@myul@box@tmpbox{$\m@th \currentmathstyle #1$}%
+        \if@myul@math@usedistance@
+            \def\@myul@box@useddepth{\dimexpr-\dp\@myul@box@tmpbox-\@myul@math@distance-\SOUL@ulthickness}%
+        \else
+            \def\@myul@box@useddepth{\dimexpr-\@myul@math@depth-\SOUL@ulthickness}%
+        \fi
+    \else
+        \sbox\@myul@box@tmpbox{#1}%
+        \if@myul@text@usedistance@
+            \def\@myul@box@useddepth{\dimexpr-\dp\@myul@box@tmpbox-\@myul@text@distance-\SOUL@ulthickness}%
+        \else
+            \def\@myul@box@useddepth{\dimexpr-\@myul@text@depth-\SOUL@ulthickness}%
+        \fi
+    \fi
+    \usebox\@myul@box@tmpbox%
+    \alt#2{%
+        \llap{%
+            % \SOUL@ulcolor = \textcolor{<color>}
+            \SOUL@ulcolor{%
+                \rule[\@myul@box@useddepth]{\wd\@myul@box@tmpbox}{\SOUL@ulthickness}%
+            }%
+        }%
+    }{%
+        \rule[\@myul@box@useddepth]{0pt}{\SOUL@ulthickness}%
+    }%
+}
+
+
+% ---------- using TeX primitive ----------
+% In plain TeX \underline is a primitive 
+% which can be used in math mode only.
+% In LaTeX \underline is overridden 
+% so that it can be used outside of math mode, too.
+% Either way, it does *not* support line breaks.
+% Thickness and depth are *not* freely adjustable.
+% thickness = $\theta$, distance to underline = $3\theta$
+% where $\theta=\xi_8$ default rule thickness
+% [The TeXbook, page 443, rule 10]
+% default rule thickness can be changed with:
+% \fontdimen8\textfont3=5pt
+% default rule thickness is 0.4pt
+% https://tex.stackexchange.com/a/167957/25264
+% Changing the default rule thickness 
+% changes the thickness of fraction bars, too.
+% Therefore this command ignores the thickness and depth options.
+% You should avoid this method to avoid inconsistencies.
+
+% based on https://gist.github.com/lucaswerkmeister/3f7672ee522f7e823cec63fdc85fd7aa
+\newcommand<>{\@myul@primitive}[1]{%
+    % colored underline: https://tex.stackexchange.com/a/9477/25264
+    % transparent underline: https://tex.stackexchange.com/a/45601/25264
+    % switch between colored and transparent: http://mirrors.ibiblio.org/CTAN/macros/latex/contrib/beamer/doc/beameruserguide.pdf sections 9.3 and 9.6.1
+    % \SOUL@ulcolor = \textcolor{<color>}
+    \let\textcolor=\color
+    \alt#2%
+        {\SOUL@ulcolor\underline{{\color{black}#1}}\color{black}}%
+        {\transparent{0.0}\underline{{\transparent{1.0}#1}}\transparent{1.0}}%
+}
+
+\makeatother
+
+
+% ---------- default settings ----------
+
+\setmyul{
+    text command=soul,
+    math command=box,
+}
+
+
+
+% ---------- test ----------
+
+\setmyul{math distance=.5ex}
+
+\useinnertheme{default}
+\beamertemplatenavigationsymbolsempty
+
+
+% based on https://tex.stackexchange.com/questions/14821/whats-the-proper-way-to-typeset-a-differential-operator
+\newcommand{\dif}{\ensuremath{\operatorname{d}\!}}

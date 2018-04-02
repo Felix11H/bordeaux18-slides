@@ -1,0 +1,300 @@
+
+%% \usepackage{pgfpages}
+%% \setbeameroption{show notes on second screen=bottom} %
+
+\usepackage{pdfpcnotes}
+
+\usepackage{graphicx}
+\usepackage{multimedia}
+
+\useinnertheme{default}
+\beamertemplatenavigationsymbolsempty
+
+% serif config:
+%\usefonttheme{serif}
+%\usepackage{palatino}
+%\usepackage{eulervm} %additional math 
+
+% sans-serif config:
+\usepackage{tgheros}
+\usepackage{sansmath} %additional math 
+\usepackage{bm}
+\usepackage{empheq}
+\usepackage[most]{tcolorbox} % framed equations!
+\tcbset{highlight math style={boxsep=1mm,colback=white,
+                              colframe=red, arc=0pt,outer arc=0pt}}
+
+\usepackage[english]{babel}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+
+% Other Palatino font packages, with math
+% see also http://tex.stackexchange.com/questions/89610
+% and math_fonts.pdf in Latex docs
+% --------------------
+% \usepackage{pxfonts}
+% \usepackage{mathpazo} % add possibly `sc` and `osf` options
+% --------------------
+
+\setbeamercolor*{structure}{fg=black}
+
+\usepackage{transparent} % transparent graphics
+
+\graphicspath{{img/}}
+
+\usepackage{amsmath, amsthm}
+
+\newcommand{\E}{\mathbf{E}}
+\newcommand{\Var}{\mathbf{Var}}
+\newcommand{\Cov}{\mathrm{Cov}}
+
+% colored math underlines
+% http://tex.stackexchange.com/a/9472/4912
+\usepackage{xcolor}
+\definecolor{dblue}{RGB}{23,103,192}
+\definecolor{dred}{RGB}{237,28,36}
+\definecolor{dgreen}{RGB}{34,139,34}
+\newsavebox\MBox
+\newcommand\Cline[2][red]{{\sbox\MBox{$#2$}%
+  \rlap{\usebox\MBox}\color{#1}\rule[-1.8\dp\MBox]{\wd\MBox}{1pt}}}
+
+
+% needed for \vfill to produce equal spacing
+\makeatletter
+\g@addto@macro\normalsize{%
+  \setlength\abovedisplayskip{0pt}
+}
+\makeatother
+
+% -------------- Norm || - || and Abs |-|  -------------- %
+
+% defines \norm{} and \abs to automatically resize
+% see http://tex.stackexchange.com/a/43009/4912
+\usepackage{mathtools}
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}%
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}%
+
+% Swap the definition of \abs* and \norm*, so that \abs
+% and \norm resizes the size of the brackets, and the 
+% starred version does not.
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+%
+\let\oldnorm\norm
+\def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
+\makeatother
+
+
+% -------------- \widebar{ . }  -------------- %
+
+% from http://tex.stackexchange.com/a/60253/4912 
+
+\makeatletter
+\let\save@mathaccent\mathaccent
+\newcommand*\if@single[3]{%
+  \setbox0\hbox{${\mathaccent"0362{#1}}^H$}%
+  \setbox2\hbox{${\mathaccent"0362{\kern0pt#1}}^H$}%
+  \ifdim\ht0=\ht2 #3\else #2\fi
+  }
+%The bar will be moved to the right by a half of \macc@kerna, which is computed by amsmath:
+\newcommand*\rel@kern[1]{\kern#1\dimexpr\macc@kerna}
+%If there's a superscript following the bar, then no negative kern may follow the bar;
+%an additional {} makes sure that the superscript is high enough in this case:
+\newcommand*\widebar[1]{\@ifnextchar^{{\wide@bar{#1}{0}}}{\wide@bar{#1}{1}}}
+%Use a separate algorithm for single symbols:
+\newcommand*\wide@bar[2]{\if@single{#1}{\wide@bar@{#1}{#2}{1}}{\wide@bar@{#1}{#2}{2}}}
+\newcommand*\wide@bar@[3]{%
+  \begingroup
+  \def\mathaccent##1##2{%
+%Enable nesting of accents:
+    \let\mathaccent\save@mathaccent
+%If there's more than a single symbol, use the first character instead (see below):
+    \if#32 \let\macc@nucleus\first@char \fi
+%Determine the italic correction:
+    \setbox\z@\hbox{$\macc@style{\macc@nucleus}_{}$}%
+    \setbox\tw@\hbox{$\macc@style{\macc@nucleus}{}_{}$}%
+    \dimen@\wd\tw@
+    \advance\dimen@-\wd\z@
+%Now \dimen@ is the italic correction of the symbol.
+    \divide\dimen@ 3
+    \@tempdima\wd\tw@
+    \advance\@tempdima-\scriptspace
+%Now \@tempdima is the width of the symbol.
+    \divide\@tempdima 10
+    \advance\dimen@-\@tempdima
+%Now \dimen@ = (italic correction / 3) - (Breite / 10)
+    \ifdim\dimen@>\z@ \dimen@0pt\fi
+%The bar will be shortened in the case \dimen@<0 !
+    \rel@kern{0.6}\kern-\dimen@
+    \if#31
+      \overline{\rel@kern{-0.6}\kern\dimen@\macc@nucleus\rel@kern{0.4}\kern\dimen@}%
+      \advance\dimen@0.4\dimexpr\macc@kerna
+%Place the combined final kern (-\dimen@) if it is >0 or if a superscript follows:
+      \let\final@kern#2%
+      \ifdim\dimen@<\z@ \let\final@kern1\fi
+      \if\final@kern1 \kern-\dimen@\fi
+    \else
+      \overline{\rel@kern{-0.6}\kern\dimen@#1}%
+    \fi
+  }%
+  \macc@depth\@ne
+  \let\math@bgroup\@empty \let\math@egroup\macc@set@skewchar
+  \mathsurround\z@ \frozen@everymath{\mathgroup\macc@group\relax}%
+  \macc@set@skewchar\relax
+  \let\mathaccentV\macc@nested@a
+%The following initialises \macc@kerna and calls \mathaccent:
+  \if#31
+    \macc@nested@a\relax111{#1}%
+  \else
+%If the argument consists of more than one symbol, and if the first token is
+%a letter, use that letter for the computations:
+    \def\gobble@till@marker##1\endmarker{}%
+    \futurelet\first@char\gobble@till@marker#1\endmarker
+    \ifcat\noexpand\first@char A\else
+      \def\first@char{}%
+    \fi
+    \macc@nested@a\relax111{\first@char}%
+  \fi
+  \endgroup
+}
+\makeatother
+
+
+\usepackage[loadonly]{enumitem} % Enumitem-Beamer Incompatibility! See
+                                % http://tex.stackexchange.com/a/52299/4912
+
+\usepackage{siunitx} %use: \SI{300}{\micro\meter}
+% \usepackage{algorithm, algorithmic}
+\usepackage{hyperref}
+\usepackage{color}
+\usepackage{multicol} %columns, use instead of minipage for vert.
+\usepackage{overpic} %labels over \includegraphics
+\usepackage[export]{adjustbox} %frames for \includegraphics,
+\usepackage{framed}
+\usepackage{caption}
+\captionsetup[figure]{justification=raggedleft, singlelinecheck=false,
+font={scriptsize, color=gray}, skip=3pt} %for image citations
+\usepackage{subcaption}
+\usepackage{nicefrac}
+\usepackage{csquotes}
+
+%% \usepackage{ulem,xpatch} % \sout{..} for strikethrough
+
+%% \xpatchcmd{\sout}
+%%   {\bgroup}
+%%   {\bgroup\def\ULthickness{1.5pt}}
+%%   {}{}
+
+\usepackage{soul}
+
+%---------- Minted for Code --------- %
+
+% \usepackage{minted}
+% \newminted{python}{fontsize=\scriptsize, linenos,
+%                		numbersep=8pt,
+%                		gobble=4,
+%                		frame=lines,
+% 					bgcolor=bg,
+%                		framesep=3mm}         		
+               		
+% \newenvironment{gcode}{\textcolor{tg}{\texttt{}{}}}  
+
+% \usepackage{underscore} %Caution: problems with underscores in filenames!
+
+
+
+
+
+%------------- Biblatex ------------- %
+
+% \usepackage[style=authoryear, url=false, maxbibnames=99, doi=false,
+% maxcitenames=2]{biblatex}
+\setbeamertemplate{bibliography item}{}
+
+\usepackage[backend=bibtex,     % needed for compilation
+            style=authoryear,   %  authoryear-comp maybe?
+            url=false,          %
+            maxbibnames=99,     %
+            doi=false,           %
+            maxcitenames=2,     %
+            dashed=false,        %  (1)
+           ]{biblatex}
+
+
+\DeclareFieldFormat*{urldate}{}
+
+\AtEveryBibitem{%
+  \ifentrytype{misc}{%
+  }{%
+    \clearfield{url}%
+  }%
+}
+
+
+\AtEveryBibitem{\clearlist{language}}
+\AtEveryBibitem{\ifentrytype{article}{\clearfield{issn}}{}}
+\AtEveryBibitem{\clearfield{month}}
+%\AtEveryBibitem{\clearfield{pages}}
+%\AtEveryBibitem{\clearfield{number}}
+%\AtEveryBibitem{\clearfield{volume}}
+\AtEveryBibitem{\clearfield{eprint}}
+\AtEveryBibitem{\clearfield{isbn}}
+\AtEveryBibitem{\clearfield{shorttitle}}
+\AtEveryBibitem{\clearfield{note}}
+
+
+% removes quotation marks for article titles
+\DeclareFieldFormat[article, incollection, inproceedings]{title}{#1} 
+
+
+
+%\bibliography{\string~/lib/main} %\string~ to access home
+\bibliography{main} %\string~ to access home
+\renewcommand*{\bibfont}{\tiny}
+\setlength\bibitemsep{9pt}
+\setlength\bibhang{4pt}
+
+
+
+%------------- Colors --------------- %
+
+\definecolor{mpl_blue}{rgb}{0,0,1}
+\definecolor{mpl_red}{rgb}{1,0,0}
+\definecolor{mpl_orange}{rgb}{1,0.647,0}
+\definecolor{mpl_purple}{rgb}{0.5,0,0.5}
+
+\newcommand{\Transpar}{0.4}
+
+
+
+
+%-------- Custom Environments ------- %
+
+
+% http://tex.stackexchange.com/questions/84936/
+\newlist{arrowlist}{itemize}{1}
+\setlist[arrowlist]{label=$\Rightarrow$}
+
+
+% \source{} to give picture credit. From
+% http://tex.stackexchange.com/questions/48473
+\usepackage[absolute,overlay]{textpos}
+
+\setbeamercolor{framesource}{fg=gray}
+\setbeamerfont{framesource}{size=\normalfont}
+
+\newcommand{\source}[1]{\footnotesize\begin{textblock*}{4cm}(8.7cm,8.6cm)
+    \begin{beamercolorbox}[ht=0.75cm,right]{framesource}
+        \usebeamerfont{framesource}\usebeamercolor[fg]{framesource}{#1}
+    \end{beamercolorbox}
+\end{textblock*}}
+        
+
+
+% ---------- some colours ------------ %
+
+\definecolor{preorange}{RGB}{229,129,79}
+\definecolor{pregreen}{RGB}{196,202,52}
