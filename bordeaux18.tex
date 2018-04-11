@@ -21,9 +21,62 @@
 % I to talk?
 \include{frames/about_me}
 
+
 % Intro: Why we (might) need to do things differently
 % from our supervisors/how it's been done until now
+% reproducibility crisis everywhere !!
 \include{frames/reproducibility_crisis}
+
+
+% So let's talk about code. Probably all of us are working
+% with code, even if it's just a simple MATLAB script.
+%
+% What does reproducibility for these computational parts
+% look like?
+% 
+% Naively, reproducibility shouldn't be a problem at all for code,
+% right?
+%
+% 1. everyone has a computer (as opposed to a lab setup) and
+%    running code is inexpensive and unproblematic compared
+%    to replicating experiment
+% 2. can share all the code (~5MB) opposed to sharing a full
+%    lab (impossible)
+% 
+% So where's reproducibility in the computational sciences at?
+% Well, it's not looking great.
+%
+% Many of you probably know from personal experience that this
+% that this naive thinking does not apply, but let's look at
+% how bad it really is:
+%
+% Problems:
+% ---> study from Stodden and Collberg
+\include{frames/reproducibility_in_compsci}
+
+
+
+% So what's there to do?
+% ---> Be open, be reproducible (in that order)
+% many people are already doing it?
+% ---> open source for Neuroscience (idea: highlight
+% researchers from Bordeaux/Frankfurt?)
+
+% Next, we need reproducibility! So what does code
+% need to look like in practice? -> 5R
+
+% Is this at all possible to implement? -> yes, my Wikimedia project
+
+% here are a few tips in practice:
+
+% -- [1] upload to Zenodo, OSF.io, ---> DOI
+% -- [2] use random seeds and makefile to regenerate results
+% -- [3] document versions of code (toolboxes), (pip freeze, MATLAB versions)
+% -- [4] provide dependencies (Docker, Singularity, Virtual Machine,...)
+% -- [5] document more closely parameters, input/output, ...
+
+
+
 
 % So what can we do? -> A call for open source in
 % neuroscience
@@ -33,6 +86,7 @@
 % What do we need to do to make our code reproducible?
 % --> Rougier's five Rs
 \include{frames/what_open_and_reproducible_means}
+
 
 % Does it really work? Yes! I think. Here's an example
 % how things can be done --> My project
