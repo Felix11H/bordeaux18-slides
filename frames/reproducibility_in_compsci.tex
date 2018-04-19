@@ -69,17 +69,23 @@
 
 
 
-\begin{frame}{An attempt to estimate }
+\begin{frame}{Sharing of code \& data mandatory in many journals}
 
   
   \begin{figure}
     \centering
-    \includegraphics[width=0.95\textwidth]{%
+    \includegraphics<1>[width=0.95\textwidth]{%
       img/science_policy.png} %
+    \includegraphics<2>[width=0.95\textwidth]{%
+      img/science_policy_t1.png} %
+    \includegraphics<3>[width=0.95\textwidth]{%
+      img/science_policy_t2.png} %
   \end{figure}
 
+  \vspace{0.4cm}
+  
   \begin{flushright}
-    Policy of \textit{Science} since February 11, 2011
+    \small Policy of \textit{Science} since February 11, 2011
   \end{flushright}
 
   \source{\cite{Stodden2018}}
@@ -93,6 +99,28 @@
   }
   
 \end{frame}
+
+\begin{frame}{}
+  
+  \begin{figure}
+    \centering
+    \includegraphics[width=0.875\textwidth]{%
+    img/stodden2018_cover3.png} %
+  \end{figure}
+  
+  \vspace{0.015cm}
+
+  \begin{center}
+  Out of 206 computational studies in \textit{Science} since 2011, 26 provided code \& data directly  
+  \end{center}
+  
+
+  \source{\cite{Stodden2018}}
+  
+
+  
+\end{frame}
+
 
 \begin{frame}{A few responses...}
   
@@ -148,13 +176,97 @@
 
   \begin{figure}
     \centering
-    \includegraphics[width=0.95\textwidth]{%
+    \includegraphics[width=0.9\textwidth]{%
       img/stodden2018_table1.png} %
   \end{figure}
-  
 
+  \vspace{0.1cm}
+  
+  \begin{center}
+    $\Rightarrow$ Code \& data could be retrieved for 91 out of 206 studies.    
+  \end{center}
 
   \source{\cite{Stodden2018}}
+  
+\end{frame}
+
+
+\begin{frame}{}%Open Source for Neuroscience}
+
+  \begin{figure}
+    \includegraphics[width=0.95\textwidth]{%
+      img/open_source_neuroscience.png} %
+  \end{figure}
+  
+\end{frame}
+
+
+
+\begin{frame}{Open Source for Neuroscience}
+
+  \begin{figure}
+    \centering
+    %% \includegraphics<1>[width=0.9\textwidth]{%
+    %%   img/open_source_neuroscience.png} %
+    \includegraphics<1>[width=\textwidth]{%
+      img/pledge_2.png} %
+    \includegraphics<2>[width=\textwidth]{%
+      img/pledge_2_t1.png} %
+  \end{figure}
+
+  \onslide<1->
+  \begin{center}
+    \href{http://opensourceforneuroscience.org/}{opensourceforneuroscience.org/}
+  \end{center}
+
+  \pnote{
+    
+    As of 2018/04: 200 neuroscientist have made this pledge
+    
+  }
+  
+\end{frame}
+
+
+
+\begin{frame}{Reproducibility when code was available}
+
+  \vspace{0.05cm}
+  
+  56 out of 91 studies were judged as \textit{potentially reproducible}
+
+  \vfill
+  
+  Testing 22 randomly selected studies:
+
+  \vspace{0.1cm}
+
+  \only<1-3>{
+    \begin{figure}
+      \centering
+      \includegraphics<1>[width=0.825\textwidth]{%
+        img/stodden2018_table4_1-3.png} %
+      \includegraphics<2>[width=0.825\textwidth]{%
+        img/stodden2018_table4_2-3.png} %
+      \includegraphics<3>[width=0.825\textwidth]{%
+        img/stodden2018_table4_3-3.png} %
+  \end{figure}}
+
+  \only<4>{
+    \begin{center}
+      \begin{tikzpicture}[every text node part/.style={align=center}]
+        \draw (0, 0) node[inner sep=0] {\includegraphics<4>[width=0.825\textwidth]{%
+            img/stodden2018_table4_3-3.png}};
+        \draw  (0, -2.25) node {Even when code was available, more than half of studies\\ were reproducible only with \textit{\textcolor{red}{significant effort!}}};
+      \end{tikzpicture}
+      
+    \end{center}
+  }
+
+  \source{\cite{Stodden2018}}
+  
+  
+  
   
 \end{frame}
 
