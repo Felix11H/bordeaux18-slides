@@ -46,11 +46,15 @@
 
 \begin{frame}{Computational reproducibility should be easy...}
 
-  \begin{itemize}[leftmargin=1cm]
+  \vspace{0.7cm}
+  
+  \begin{itemize}[leftmargin=1.2cm, rightmargin=1cm]
 
-  \item[1.] everyone has access to computers (as opposed to a lab setup)
+    \itemsep10pt
+
+  \item[1.] cheap and universal access to computers (as opposed to a lab)
   \item[2.] running code is inexpensive and unproblematic (compared to replicating an experiment)
-  \item[3.] can easily share code \& data 
+  \item[3.] can easily share code \& data that allow direction reproduction
     % 1. everyone has a computer (as opposed to a lab setup) and
     %    running code is inexpensive and unproblematic compared
     %    to replicating experiment
@@ -60,10 +64,53 @@
     
   \end{itemize}
 
-  \begin{center}
-    $\Rightarrow$ Do we need to care?
-  \end{center}
 
+  
+
+  % 
+  \begin{columns}
+    %
+    \begin{column}{.625\textwidth}
+      \minipage[c][0.45\textheight][s]{\columnwidth}
+
+      \vspace{1.2cm}
+      \begin{center}
+        \textit{Is a there a reproducibility crisis\\ in computational research?}
+      \end{center}        
+      
+      \endminipage      
+    \end{column}
+    %
+    \begin{column}{.375\textwidth}
+      \onslide<1->
+      \vspace{-1cm}
+      \begin{figure}
+        \centering
+        \includegraphics[width=\textwidth]{%
+          img/computer.png} %
+      \end{figure}
+      
+      
+      
+    \end{column}
+  \end{columns}
+  
+
+
+  \pnote{
+    
+    But as many of you have probably experienced,\\
+    code is often not shared.\\
+
+    But surely, journals implementing policies \\
+    should help?
+
+    Well, let's take a look:
+    
+  }
+
+
+  
   
 \end{frame}
 
@@ -88,13 +135,13 @@
     \small Policy of \textit{Science} since February 11, 2011
   \end{flushright}
 
-  \source{\cite{Stodden2018}}
-
   \pnote{
     
     Now that we established computational reproducibility\\
     should be simple and journals are demanding\\
     sharing anyway, we're good, right?
+
+    How effect is such an policy?
     
   }
   
@@ -105,18 +152,26 @@
   \begin{figure}
     \centering
     \includegraphics[width=0.875\textwidth]{%
-    img/stodden2018_cover3.png} %
+      img/stodden2018_cover3.png} %
   \end{figure}
   
   \vspace{0.015cm}
 
   \begin{center}
-  Out of 206 computational studies in \textit{Science} since 2011, 26 provided code \& data directly  
+    Out of 206 computational studies in \textit{Science} since 2011, \\
+    26 provided code \& data directly  
   \end{center}
   
 
   \source{\cite{Stodden2018}}
-  
+
+  \pnote{
+    
+    To the remaining 180 studies \\
+    the authors sent Emails asking \\
+    for the code for the studies
+    
+  }
 
   
 \end{frame}
@@ -146,29 +201,6 @@
   
 \end{frame}
 
-\begin{frame}{But also...}
-  
-  \begin{figure}
-    \centering
-    \includegraphics[width=0.95\textwidth]{%
-      img/stodden2018_re4.png} %
-  \end{figure}
-
-  \begin{figure}
-    \centering
-    \includegraphics[width=0.95\textwidth]{%
-      img/stodden2018_re5.png} %
-  \end{figure}
-
-  \begin{figure}
-    \centering
-    \includegraphics[width=0.95\textwidth]{%
-      img/stodden2018_re6.png} %
-  \end{figure}
-
-  \source{\cite{Stodden2018}}
-  
-\end{frame}
 
 
 \begin{frame}{\large   Of $N=206$ articles published in \textit{Science} since 2011...}
@@ -229,6 +261,20 @@
 
 
 
+\begin{frame}{A slide of hope}
+
+  Researchers are committing to sharing the code and data. Journals have to demand
+
+  This is .
+
+  With this reproducibility in computational research is no longer an issue, right?
+  
+  
+\end{frame}
+
+
+
+
 \begin{frame}{Reproducibility when code was available}
 
   \vspace{0.05cm}
@@ -237,38 +283,73 @@
 
   \vfill
   
-  Testing 22 randomly selected studies:
+  \onslide<2->
+  \begin{tabular}{|p{0.9\textwidth}}
+    However, even when code was available, more than half of studies were reproducible only with \textit{\textcolor{red}{significant effort!}}  
+  \end{tabular}	     
 
-  \vspace{0.1cm}
+  \vfill
 
-  \only<1-3>{
-    \begin{figure}
-      \centering
-      \includegraphics<1>[width=0.825\textwidth]{%
-        img/stodden2018_table4_1-3.png} %
-      \includegraphics<2>[width=0.825\textwidth]{%
-        img/stodden2018_table4_2-3.png} %
-      \includegraphics<3>[width=0.825\textwidth]{%
-        img/stodden2018_table4_3-3.png} %
-  \end{figure}}
 
-  \only<4>{
-    \begin{center}
-      \begin{tikzpicture}[every text node part/.style={align=center}]
-        \draw (0, 0) node[inner sep=0] {\includegraphics<4>[width=0.825\textwidth]{%
-            img/stodden2018_table4_3-3.png}};
-        \draw  (0, -2.25) node {Even when code was available, more than half of studies\\ were reproducible only with \textit{\textcolor{red}{significant effort!}}};
-      \end{tikzpicture}
+  \onslide<3-6>{
+
+    Problems:
+  \vspace{-0.15cm}
+
+  \begin{columns}[T]
+    %
+    \begin{column}{.5\textwidth}
+      %% \minipage[c][0.3\textheight][s]{\columnwidth}
+      \begin{itemize}[leftmargin=0.75cm]
+
+      \item<3->[-] impossible to reproduce (missing code, data or methodology)
+      \item<4->[-] required tedious effort (e.g.\ download large number of individual data sets)
+        
+        
+      \end{itemize}
+      %% \endminipage      
+
+    \end{column}
+    %
+    \begin{column}{.5\textwidth}
+      %% \minipage[c][0.3\textheight][s]{\columnwidth}
       
-    \end{center}
-  }
+      \begin{itemize}[leftmargin=*]
+      \item<5->[-] required intellectual effort (e.g.\ knowledge of past articles, implementing given pseudo code)
+      \item<6->[-] required tweaking (e.g.\ mising parameters, minor methods steps)
+            
+      \end{itemize}
+      %% \endminipage
+      
+    \end{column}
+    %
+  \end{columns}
+  \vspace{0.2cm}}
 
   \source{\cite{Stodden2018}}
-  
-  
-  
-  
+    
 \end{frame}
+
+
+
+\begin{frame}{Reproducibility when code was available}
+
+    \begin{figure}
+      \centering
+      \includegraphics[width=0.85\textwidth]{%
+      img/stodden2018_table4_3-3.png} %
+    \end{figure}
+
+    \vspace{-1.25cm}
+  
+\begin{center}
+      Computational reproducibility remains difficult even \\when code is available!
+      
+\end{center}
+  
+    
+\end{frame}
+
 
 
 
