@@ -1,36 +1,81 @@
-\begin{frame}{}
-  % 
+\begin{frame}{Problems to solve}
+  %
+
+  \vspace{-0.5cm}
+  
   \begin{columns}
     %
-    \begin{column}{.5\textwidth}
-      \minipage[c][0.65\textheight][s]{\columnwidth}
-      \begin{center}
-      Problem 1        
-      \end{center}
+    \begin{column}{.6\textwidth}
+      \minipage[c][0.2\textheight][s]{\columnwidth}
 
+      \vfill
+      
+      Problem 1 \onslide<2->{Check}
 
-      \begin{itemize}[leftmargin=*]
+      \begin{itemize}[leftmargin=0.6cm]
         
-      \item[-] use of difficult to install computational environment
+      \item[-] using of difficult to install computational environment (graph-tool)       
         
       \end{itemize}
 
+      \vfill
       
       
       \endminipage      
     \end{column}
     %
-    \begin{column}{.5\textwidth}
-            \minipage[c][0.65\textheight][s]{\columnwidth}
+    \begin{column}{.4\textwidth}
 
-      Problem 2
-      \begin{itemize}[leftmargin=*]
+
+
+      \begin{figure}
+        \centering
+        \includegraphics[width=0.75\textwidth]{%
+          img/docker_logo.pdf} %
+      \end{figure}
+      
+
+
+
+      
+    \end{column}
+  \end{columns}
+
+
+  \onslide<3->
+  \vspace{-0.3cm}
+  \begin{columns}
+    %
+    \begin{column}{.6\textwidth}
+      \minipage[c][0.5\textheight][s]{\columnwidth}
+
+      \vfill
+      
+      Problem 2        
+
+      \begin{itemize}[leftmargin=0.6cm]
         
-      \item[-] computationally expensive simulation - how to document?
+      \item<3->[-] long \& resource demanding computations
+      \item<4->[-] subsequent analysis require output of previous computations \vspace{0.17cm}
+      \item<5->[] \textit{difficult to understand what is required to reproduce a single output (1 figure)}
         
       \end{itemize}
 
-      \endminipage            
+
+      
+      \endminipage      
+    \end{column}
+    %
+    \begin{column}{.4\textwidth}
+      \vspace{0.1cm}
+      \begin{figure}
+        \centering
+        \includegraphics<6->[width=0.85\textwidth]{%
+          img/sumatra_logo.png} %
+      \end{figure}
+
+      
+      
       
     \end{column}
   \end{columns}  
