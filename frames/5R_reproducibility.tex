@@ -1,20 +1,22 @@
 
 
-\begin{frame}{Five \textit{Rs} for scientific code}
+\begin{frame}{Five $R$s for reproducible scientific code}
 
+  \small
   
-  \begin{itemize}[leftmargin=2.6cm]
-    \itemsep11pt
-    \item[$\mathbf{R^1}$ \textit{Re-runnable}:] can be run again when needed (e.g.~more than the one time that was needed to produce the results)
+  \begin{itemize}[leftmargin=2.45cm]
+    \itemsep9pt
+    \item<1->[$\mathbf{R^1}$ \textit{Re-runnable}:] can be run again when needed \onslide<2->{\textcolor{mpipurp}{$\rightarrow$ document dependencies necessary to run code}}
 
-    \item[$\mathbf{R^2}$ \textit{Repeatable}:] program is deterministic, produces repeatable output
+    \item<3->[$\mathbf{R^2}$ \textit{Repeatable}:] program is deterministic, produces repeatable output \onslide<4->{\textcolor{mpipurp}{$\rightarrow$ add seeds for random number generators}}
 
-    \item[$\mathbf{R^3}$ \textit{Reproducible}:] another researcher can take code \& input data, execute code, and re-obtain same results
+    \item<5->[$\mathbf{R^3}$ \textit{Reproducible}:] another researcher can take code \& input data, execute code, and re-obtain same results \\ \onslide<6->{\textcolor{mpipurp}{$\rightarrow$ detailed versions of dependencies, version of code, \ul{availability}}}
 
-    \item[$\mathbf{R^4}$ \textit{Reusable}:] program  can be easily used, and
-modified, by you and other people, inside \& outside own lab
+          \item<1->[] \textcolor{white}{program  can be easily used, and modified, by you and other people, inside \& outside own lab \\ \onslide<1->{$\rightarrow$ avoid hard coded numbers, write documentation}}
 
-    \item[$\mathbf{R^5}$ \textit{Replicable}:] program can be re-implemented by another research to re-obtain results
+    \item<1->[] \textcolor{white}{program can be re-implemented by another research to re-obtain results  \\ \onslide<1->{$\rightarrow$ see for example ReScience journal}}
+
+
 
   \end{itemize}  
 
@@ -25,3 +27,56 @@ modified, by you and other people, inside \& outside own lab
 \end{frame}
 
 
+\begin{frame}{Where to publish code}
+
+  \only<1>{\vspace{0.4cm}}
+
+  \begin{figure}
+    \centering
+    \includegraphics<1>[width=0.7\textwidth]{%
+      zenodo.png} %
+    \includegraphics<2>[width=0.95\textwidth]{%
+      osf_example.png} %
+  \end{figure}
+
+  \begin{center}
+    \only<1>{\href{https://zenodo.org/}{https://zenodo.org/}}    
+  \end{center}
+
+  \begin{center}
+    \only<2>{\vspace{-0.8cm}\href{https://osf.io/}{https://osf.io/}}
+  \end{center}
+
+
+  
+  
+  
+\end{frame}
+
+
+
+
+
+\begin{frame}{Five $R$s for reproducible scientific code}
+
+  \small
+  
+  \begin{itemize}[leftmargin=2.45cm]
+    \itemsep9pt
+    \item<1->[$\mathbf{R^1}$ \textit{Re-runnable}:] can be run again when needed \onslide<1->{\textcolor{mpipurp}{$\rightarrow$ document dependencies necessary to run code}}
+
+    \item<1->[$\mathbf{R^2}$ \textit{Repeatable}:] program is deterministic, produces repeatable output \onslide<1->{\textcolor{mpipurp}{$\rightarrow$ add seeds for random number generators}}
+
+    \item<1->[$\mathbf{R^3}$ \textit{Reproducible}:] another researcher can take code \& input data, execute code, and re-obtain same results \\ \onslide<1->{\textcolor{mpipurp}{$\rightarrow$ detailed versions of dependencies, version of code, \ul{availability}}}
+
+    \item<2->[$\mathbf{R^4}$ \textit{Reusable}:] program  can be easily used, and modified, by you and other people, inside \& outside own lab \\ \onslide<3->{\textcolor{mpipurp}{$\rightarrow$ avoid hard coded numbers, write documentation}}
+
+    \item<4->[$\mathbf{R^5}$ \textit{Replicable}:] program can be re-implemented by another research to re-obtain results  \\ \onslide<5->{\textcolor{mpipurp}{$\rightarrow$ see for example ReScience journal}}
+
+  \end{itemize}  
+
+  
+  \source{\cite{Benureau2018}}
+  
+  
+\end{frame}

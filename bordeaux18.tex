@@ -1,5 +1,5 @@
 
-\documentclass[11pt]{beamer}
+\documentclass[usenames,dvipsnames,11pt]{beamer}
 
 % contains the complete preamble
 \usepackage{present}
@@ -14,107 +14,62 @@
 \begin{document}
 
 
-%% \include{frames/title}
+\include{frames/title}
 
-%% % pre-Intro: About me - what qualifies me to tell you
-%% % anything about reproducibility/open science. Whom am
-%% % I to talk?
-%% \include{frames/about_me}
+% pre-Intro: About me - what qualifies me to tell you
+% anything about reproducibility/open science.
+% Who am I to talk?
+\include{frames/about_me}
 
+% I'm not the only caring about reproducibility...
+\include{frames/reproducibility_crisis}
 
-%% % Intro: Why we (might) need to do things differently
-%% % from our supervisors/how it's been done until now
-%% % reproducibility crisis everywhere !!
-%% \include{frames/reproducibility_crisis}
+% Computational reproducibility shouldn't be hard - right?
+\include{frames/experimental_vs_computational}
 
+% In experience, researchers don't like to share code.
+% So how well does it work when researchers are
+% obligated to share?
+\include{frames/code_sharing}
 
-%% % So let's talk about code. Probably all of us are working
-%% % with code, even if it's just a simple MATLAB script.
-%% %
-%% % What does reproducibility for these computational parts
-%% % look like?
-%% % 
-%% % Naively, reproducibility shouldn't be a problem at all for code,
-%% % right?
-%% %
-%% % 1. everyone has a computer (as opposed to a lab setup) and
-%% %    running code is inexpensive and unproblematic compared
-%% %    to replicating experiment
-%% % 2. can share all the code (~5MB) opposed to sharing a full
-%% %    lab (impossible)
-%% % 
-%% % So where's reproducibility in the computational sciences at?
-%% % Well, it's not looking great.
-%% %
-%% % Many of you probably know from personal experience that this
-%% % that this naive thinking does not apply, but let's look at
-%% % how bad it really is:
-%% %
-%% % Problems:
-%% % ---> study from Stodden and Collberg
-%% \include{frames/reproducibility_in_compsci}
+% but in Neuroscience very positive movement!
+\include{frames/open_source_neuroscience}
+
+% It's not great, but especially in neuroscience there
+% is a positive trend. With more and more code being
+% available soon, computational reproducibility
+% shouldn't be a problem, yes?
+\include{frames/code_reproducibility}
+
+% If I'm talking the talk, I have to walk the walk.
+% How can I achieve reproducibility in my research
+% project I'm trying to publish?
+\include{frames/research_project}
+
+% Wikimedia fellowship helped!
+\include{frames/wikimedia_fellowship}
 
 
+% the fellowship project
+\include{frames/one_problem}
+\include{frames/prototype_docker}
+\include{frames/two_problems}
+\include{frames/prototype_smtweb}
+\include{frames/two_solutions}
+\include{frames/prototype_repeat}
+\include{frames/prototype_wrapup}
 
-%% % So what's there to do?
-%% % ---> Be open, be reproducible (in that order)
-%% % many people are already doing it?
-%% % ---> open source for Neuroscience (idea: highlight
-%% % researchers from Bordeaux/Frankfurt?)
-%% \include{frames/open_source_neuroscience}
+% So what can I take out of this talk? Give some rules
+% and guide lines to follow (other resources)
+% -> Benureau & Rougier's 5Rs
+\include{frames/5R_reproducibility}
 
+% cite these nice papers
+\nocite{Collberg2013, Rougier2017}
+\include{frames/bibliography}
 
-
-%% % Is this at all possible to implement?  Does it
-%% % really work? Yes! I think. Here's an example
-%% % how things can be done --> My project
-
-%% \include{frames/research_project}
-
-
-%% \include{frames/wikimedia_project}
-
-
-
-%% \include{frames/two_problems}
-
-
-%% \include{frames/docker}
-
-%% \include{frames/Sumatra}
-
-\include{frames/prototype}
-
-
-
-%% % A few tips in practice:
-
-%% % -- [1] upload to Zenodo, OSF.io, ---> DOI
-%% % -- [2] use random seeds and makefile to regenerate results
-%% % -- [3] document versions of code (toolboxes), (pip freeze, MATLAB versions)
-%% % -- [4] provide dependencies (Docker, Singularity, Virtual Machine,...)
-%% % -- [5] document more closely parameters, input/output, ...
-%% \include{frames/in_practice}
-
-
-
-%% % So what can I take out of this talk? Give some rules
-%% % and guide lines to follow (other resources)?
-%% \include{frames/takeaway}
-
-%% % Next, we need reproducibility! What is even
-%% % reproducible? Does open==reproducible?
-%% % So what does code need to look like in practice?
-%% % --> Rougier's five Rs
-%% \include{frames/5R_reproducibility}
-
-
-%% \include{frames/bibliography}
-
-%% \include{frames/overflow}
-
-
-
+% overflow
+\include{frames/overflow}
 
 \end{document}
 

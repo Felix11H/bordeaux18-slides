@@ -34,6 +34,12 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 
+% for checkmark symbol
+\usepackage{amssymb}% http://ctan.org/pkg/amssymb
+\usepackage{pifont}% http://ctan.org/pkg/pifont
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
+
 
 % Other Palatino font packages, with math
 % see also http://tex.stackexchange.com/questions/89610
@@ -61,6 +67,7 @@
 \definecolor{dblue}{RGB}{23,103,192}
 \definecolor{dred}{RGB}{237,28,36}
 \definecolor{dgreen}{RGB}{34,139,34}
+\definecolor{mpipurp}{RGB}{127, 62,152}
 \newsavebox\MBox
 \newcommand\Cline[2][red]{{\sbox\MBox{$#2$}%
   \rlap{\usebox\MBox}\color{#1}\rule[-1.8\dp\MBox]{\wd\MBox}{1pt}}}
@@ -224,7 +231,7 @@ font={scriptsize, color=gray}, skip=3pt} %for image citations
 \usepackage[backend=bibtex,     % needed for compilation
             style=authoryear,   %  authoryear-comp maybe?
             url=false,          %
-            maxbibnames=99,     %
+            maxbibnames=8,     %
             doi=false,           %
             maxcitenames=2,     %
             dashed=false,        %  (1)
