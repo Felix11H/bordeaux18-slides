@@ -1,0 +1,84 @@
+[file]
+bordeaux18.pdf
+[notes]
+### 5
+ 
+
+ But as many of you have probably experienced,
+ code is often not shared.
+ 
+
+ But surely, journals implementing policies 
+ should help? 
+
+ Well, let's take a look: 
+
+ 
+### 6
+ 
+
+ Now that we established computational reproducibility
+ should be simple and journals are demanding
+ sharing anyway, we're good, right? 
+
+ How effect is such an policy? 
+
+ 
+### 7
+ 
+
+ To the remaining 180 studies 
+ the authors sent Emails asking 
+ for the code for the studies 
+
+ 
+### 11
+ 
+
+ As of 2018/04: 200 neuroscientist have made this pledge 
+
+ 
+### 14
+ 
+
+ Achieving computational reproducibility is on us,
+ all of are writing code - even if it's 
+ just analysis in MATLAB. 
+
+ It's a challenge to do things differently from 
+ how they were done until now. 
+
+ 
+### 15
+ 
+
+ What makes my study complex: 
+
+ - long computations 
+
+ - first generation of networks,
+ then analysis on the generated 
+ networks 
+
+ 
+
+ 
+### 32
+ 
+
+ 
+### 41
+ 
+
+ 613 papers from 
+ - 8 conferences 
+ - 5 journals 
+
+ 30 minutes of programmer time to try 
+ make build compile/run 
+
+ Orange: Don't send more than one email to any author 
+ (if author had multiple publications) 
+
+ Even if build runs does not even try verify results! 
+ How many more papers will fall off?
