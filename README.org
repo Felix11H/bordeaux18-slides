@@ -1,0 +1,3 @@
+LaTeX source for talk on my Open Science Fellowship project held in Bordeaux, April 2018.
+
+Note: The videos will likely only play when using [[https://github.com/pdfpc/pdfpc][pdfpc]]. 
